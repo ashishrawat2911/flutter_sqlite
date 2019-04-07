@@ -25,7 +25,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void didUpdateWidget(MyHomePage oldWidget) {
     // TODO: implement didUpdateWidget
@@ -71,6 +70,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: Text(item.name),
                     subtitle: Text(item.city),
                     leading: CircleAvatar(child: Text(item.id.toString())),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EditPerson(
+                                true,
+                                person: item,
+                              )));
+                    },
                   ),
                 );
               },
@@ -83,10 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => EditPerson()));
-          }
-          ),
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EditPerson(false)));
+          }),
     );
   }
 }
