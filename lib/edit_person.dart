@@ -3,10 +3,11 @@ import 'package:flutter_sqlite/database.dart';
 import 'package:flutter_sqlite/person.dart';
 
 class EditPerson extends StatefulWidget {
-  bool edit;
-  Person person;
+  final bool edit;
+  final Person person;
 
-  EditPerson(this.edit, {this.person});
+  EditPerson(this.edit, {this.person})
+      : assert(edit == true || person == null);
 
   @override
   _EditPersonState createState() => _EditPersonState();
@@ -30,7 +31,7 @@ class _EditPersonState extends State<EditPerson> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text(widget.edit?"Edit Person":"Add person"),),
       body: Form(
           key: _formKey,
           child: Padding(
