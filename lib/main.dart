@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/database.dart';
+import 'package:flutter_sqlite/edit_person.dart';
 import 'package:flutter_sqlite/person.dart';
-import 'dart:math' as math;
 
 void main() => runApp(MyApp());
 
@@ -25,10 +25,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Person> testClients = [
-    Person(city: "Noida", name: "Ashish"),
-    Person(city: "Noida", name: "Ankit"),
-  ];
+
+  @override
+  void didUpdateWidget(MyHomePage oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          Person rnd = testClients[math.Random().nextInt(testClients.length)];
-          await DBProvider.dbProvider.newPerson(rnd);
-          setState(() {});
-        },
-      ),
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => EditPerson()));
+          }
+          ),
     );
   }
 }
