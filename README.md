@@ -14,3 +14,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+
+# Screenshots
+
+<img src="https://raw.githubusercontent.com/ashishrawat2911/flutter_sqlite/master/screenshots/screen1.png" height=450 width=250> <img src="https://raw.githubusercontent.com/ashishrawat2911/flutter_sqlite/master/screenshots/screen2.png" height=450 width=250> <img src="https://raw.githubusercontent.com/ashishrawat2911/flutter_sqlite/master/screenshots/screen3.png" height=450 width=250> <img src="https://raw.githubusercontent.com/ashishrawat2911/flutter_sqlite/master/screenshots/screen4.png" height=450 width=250>
