@@ -6,10 +6,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter_sqlite/person.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DBProvider {
-  DBProvider._();
+class DatabaseProvider {
+  DatabaseProvider._();
 
-  static final DBProvider dbProvider = DBProvider._();
+  static final DatabaseProvider dbProvider = DatabaseProvider._();
   Database _database;
 
   Future<Database> get database async {
@@ -21,7 +21,7 @@ class DBProvider {
   initDB() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, "person.db");
-    return await openDatabase(path, version: 1, onOpen: (db) {},
+    return await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE Person ("
           "id integer primary key,"

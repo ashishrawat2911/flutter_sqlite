@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
           RaisedButton(
             color: Theme.of(context).primaryColor,
             onPressed: () {
-              DBProvider.dbProvider.deleteAll();
+              DatabaseProvider.dbProvider.deleteAll();
               setState(() {});
             },
             child: Text(
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: FutureBuilder<List<Person>>(
-        future: DBProvider.dbProvider.getAllPersons(),
+        future: DatabaseProvider.dbProvider.getAllPersons(),
         builder: (BuildContext context, AsyncSnapshot<List<Person>> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   key: UniqueKey(),
                   background: Container(color: Colors.red),
                   onDismissed: (direction) {
-                    DBProvider.dbProvider.deletePerson(item.id);
+                    DatabaseProvider.dbProvider.deletePerson(item.id);
                   },
                   child: ListTile(
                     title: Text(item.name),

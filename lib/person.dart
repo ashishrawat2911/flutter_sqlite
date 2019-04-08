@@ -1,15 +1,4 @@
 import 'dart:convert';
-
-Person clientFromJson(String str) {
-  final jsonData = json.decode(str);
-  return Person.fromMap(jsonData);
-}
-
-String clientToJson(Person data) {
-  final dyn = data.toMap();
-  return json.encode(dyn);
-}
-
 class Person {
   int id;
   String name;
