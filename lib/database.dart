@@ -14,11 +14,11 @@ class DatabaseProvider {
 
   Future<Database> get database async {
     if (_database != null) return _database;
-    _database = await initDB();
+    _database = await initDatabase();
     return _database;
   }
 
-  initDB() async {
+  initDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, "person.db");
     return await openDatabase(path, version: 1,
@@ -31,7 +31,7 @@ class DatabaseProvider {
     });
   }
 
-  newPerson(Person person) async {
+  addPerson(Person person) async {
     final db = await database;
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Person");
     int id = table.first["id"];
