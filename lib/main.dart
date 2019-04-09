@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
           RaisedButton(
             color: Theme.of(context).primaryColor,
             onPressed: () {
-              PersonDatabaseProvider.db.deleteAll();
+              PersonDatabaseProvider.db.deleteAllPersons();
               setState(() {});
             },
             child: Text(
@@ -51,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: FutureBuilder<List<Person>>(
+      body:
+      FutureBuilder<List<Person>>(
         future: PersonDatabaseProvider.db.getAllPersons(),
         builder: (BuildContext context, AsyncSnapshot<List<Person>> snapshot) {
           if (snapshot.hasData) {
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   key: UniqueKey(),
                   background: Container(color: Colors.red),
                   onDismissed: (direction) {
-                    PersonDatabaseProvider.db.deletePerson(item.id);
+                    PersonDatabaseProvider.db.deletePersonWithId(item.id);
                   },
                   child: ListTile(
                     title: Text(item.name),

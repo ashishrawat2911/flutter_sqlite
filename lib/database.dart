@@ -18,7 +18,7 @@ class PersonDatabaseProvider {
     return _database;
   }
 
-  getDatabaseInstance() async {
+  Future<Database> getDatabaseInstance() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, "person.db");
     return await openDatabase(path, version: 1,
@@ -31,11 +31,11 @@ class PersonDatabaseProvider {
     });
   }
 
-  addPerson(Person person) async {
+  addPersonToDatabase(Person person) async {
     final db = await database;
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Person");
     int id = table.first["id"];
-    person.id=id;
+    person.id = id ;
     var raw = await db.insert(
       "Person",
       person.toMap(),
@@ -51,7 +51,7 @@ class PersonDatabaseProvider {
     return response;
   }
 
-  getPerson(int id) async {
+  Future<Person> getPersonWithId(int id) async {
     final db = await database;
     var response = await db.query("Person", where: "id = ?", whereArgs: [id]);
     return response.isNotEmpty ? Person.fromMap(response.first) : null;
@@ -64,12 +64,12 @@ class PersonDatabaseProvider {
     return list;
   }
 
-  deletePerson(int id) async {
+  deletePersonWithId(int id) async {
     final db = await database;
     return db.delete("Person", where: "id = ?", whereArgs: [id]);
   }
 
-  deleteAll() async {
+  deleteAllPersons() async {
     final db = await database;
     db.delete("Person");
   }

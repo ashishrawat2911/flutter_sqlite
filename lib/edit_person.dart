@@ -66,7 +66,7 @@ class _EditPersonState extends State<EditPerson> {
                             id: widget.person.id));
                         Navigator.pop(context);
                       } else {
-                        await PersonDatabaseProvider.db.addPerson(new Person(
+                        await PersonDatabaseProvider.db.addPersonToDatabase(new Person(
                             name: nameEditingController.text,
                             city: cityEditingController.text));
                         Navigator.pop(context);
