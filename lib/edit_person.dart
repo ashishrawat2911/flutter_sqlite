@@ -60,13 +60,13 @@ class _EditPersonState extends State<EditPerson> {
                         Scaffold.of(context).showSnackBar(
                             SnackBar(content: Text('Processing Data')));
                       } else if (widget.edit == true) {
-                        DatabaseProvider.dbProvider.updatePerson(new Person(
+                        PersonDatabaseProvider.db.updatePerson(new Person(
                             name: nameEditingController.text,
                             city: cityEditingController.text,
                             id: widget.person.id));
                         Navigator.pop(context);
                       } else {
-                        await DatabaseProvider.dbProvider.addPerson(new Person(
+                        await PersonDatabaseProvider.db.addPerson(new Person(
                             name: nameEditingController.text,
                             city: cityEditingController.text));
                         Navigator.pop(context);
