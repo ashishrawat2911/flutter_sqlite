@@ -24,7 +24,7 @@ class PersonDatabaseProvider {
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE Person ("
-          "id integer primary key,"
+          "id integer primary key AUTOINCREMENT,"
           "name TEXT,"
           "city TEXT"
           ")");
@@ -33,9 +33,6 @@ class PersonDatabaseProvider {
 
   addPersonToDatabase(Person person) async {
     final db = await database;
-    var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Person");
-    int id = table.first["id"];
-    person.id = id ;
     var raw = await db.insert(
       "Person",
       person.toMap(),
